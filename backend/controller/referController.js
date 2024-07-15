@@ -24,7 +24,10 @@ const getRefById=async (req,res) =>{
         return res.status(404).send({success:"false",message:"No id found" })
        }
        const data = await db.query('SELECT * FROM referal WHERE id=?',[refid])
-       res.status(200).json(data)
+       res.status(200).send({
+        success:"true",
+        refDetails:data[0]
+       })
        if(!data){
         return res.status(404).send({success:"false",message:"No data found" })
        }
